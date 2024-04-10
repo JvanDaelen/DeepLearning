@@ -30,12 +30,15 @@ EVAL_DATASETS = [
 
 error_threshold_range = np.arange(1, 32, 1)
 results_dir = Path(
-    "<path>/benchmark_data"
+    "C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/"
 )
 out_dir = Path(
-    "<path>/benchmark_results"
+    "C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/benchmark_results/Trained"
 )
-methods = ["network_pred"]
+gt_dir = Path(
+    "C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/gt"
+)
+methods = ["correlation3_unscaled/2024-04-08_213127"]
 
 table_keys = [
     "age_5_mu",
@@ -57,7 +60,7 @@ for k in table_keys:
 for eval_sequence in EVAL_DATASETS:
     sequence_name = eval_sequence[0]
     track_data_gt = read_txt_results(
-        str(results_dir / "gt" / f"{sequence_name}.gt.txt")
+        str(gt_dir / f"{sequence_name}.gt.txt")
     )
 
     rows = {}

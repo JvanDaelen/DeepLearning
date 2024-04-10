@@ -155,11 +155,11 @@ class Template(LightningModule):
         else:
             attn_mask = torch.zeros([nt, nt], device=self.device)
             for i_src in range(nt):
-                src_path = batch_dataloaders[i_src].track_path.split("/")[-3]
+                src_path = batch_dataloaders[i_src].track_path.split("\\")[-3] # Note change / with \\
                 for i_target in range(nt):
                     attn_mask[i_src, i_target] = (
                         src_path
-                        == batch_dataloaders[i_target].track_path.split("/")[-3]
+                        == batch_dataloaders[i_target].track_path.split("\\")[-3] # Note change / with \\
                     )
         attn_mask = (1 - attn_mask).bool()
 
@@ -244,6 +244,7 @@ class Template(LightningModule):
         self.feature_age_hist = []
 
     def validation_step(self, batch_dataloaders, batch_nb):
+        # print("template.validation_step batch_dataloaders", batch_dataloaders) # Note 41: checking what dataloader is
         # Determine number of tracks in batch
         nb = len(batch_dataloaders)
         if self.pose_mode:
@@ -318,11 +319,12 @@ class Template(LightningModule):
         else:
             attn_mask = torch.zeros([nt, nt], device=self.device)
             for i_src in range(nt):
-                src_path = batch_dataloaders[i_src].track_path.split("/")[-3]
+                # print("batch_dataloaders[i_src].track_path: ", batch_dataloaders[i_src].track_path.split("\\")) # Note 42: the split function fails when splitting with / replacing it with \\ fixed it
+                src_path = batch_dataloaders[i_src].track_path.split("\\")[-3] # Note 40: unknown what its trying to do
                 for i_target in range(nt):
                     attn_mask[i_src, i_target] = (
                         src_path
-                        == batch_dataloaders[i_target].track_path.split("/")[-3]
+                        == batch_dataloaders[i_target].track_path.split("\\")[-3]
                     )
         attn_mask = (1 - attn_mask).bool()
 

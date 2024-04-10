@@ -1,0 +1,54 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.05056251120411082
+rocket_earth_light_338_438,0.2684104610362582
+ziggy_in_the_arena_1350_1650,0.20007639011112496
+peanuts_running_2360_2460,0.03421419606469532
+age_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.06378569534733702
+rocket_earth_light_338_438,0.09487976978193187
+ziggy_in_the_arena_1350_1650,0.11151420361978309
+peanuts_running_2360_2460,0.016498030865296182
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,3.94667272590878
+rocket_earth_light_338_438,3.4312314941627253
+ziggy_in_the_arena_1350_1650,2.651709880302353
+peanuts_running_2360_2460,3.553029781087255
+te_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.6409742912785923
+rocket_earth_light_338_438,0.7996275606989596
+ziggy_in_the_arena_1350_1650,0.6349818797433159
+peanuts_running_2360_2460,1.0354320080534507
+age_mu
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.46061356517963625
+rocket_earth_light_338_438,0.6360690210539522
+ziggy_in_the_arena_1350_1650,0.7174988452677794
+peanuts_running_2360_2460,0.4455498943826926
+age_std
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.31008751941158524
+rocket_earth_light_338_438,0.27468583524723217
+ziggy_in_the_arena_1350_1650,0.2973617943967102
+peanuts_running_2360_2460,0.271007600381958
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.7991202346041056
+rocket_earth_light_338_438,0.37717121588089325
+ziggy_in_the_arena_1350_1650,0.9278937381404175
+peanuts_running_2360_2460,0.7443249701314217
+inliers_std
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.2938483735568631
+rocket_earth_light_338_438,0.21166122195668607
+ziggy_in_the_arena_1350_1650,0.21585222164037754
+peanuts_running_2360_2460,0.33727325589886886
+expected_age
+Sequence Name,correlation3_unscaled/2024-03-27_122515
+peanuts_light_160_386,0.4357436309004887
+rocket_earth_light_338_438,0.28636343756005983
+ziggy_in_the_arena_1350_1650,0.7154449281760508
+peanuts_running_2360_2460,0.4190597356220301

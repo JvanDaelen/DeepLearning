@@ -1,10 +1,10 @@
 name: mf
 
 _target_: utils.dataset.MFDataModule
-data_dir: <path>
-extra_dir: <path>
-dt: 0.0200
-num_workers: 4
+data_dir: C:\Users\jeroe\Documents\GitHub\DeepLearning\training_data
+extra_dir: C:\Users\jeroe\Documents\GitHub\DeepLearning\training_data
+dt: 0.0100 # Note 38: chanfe dt to 0.0100 as 0.0200 does not always exist
+num_workers: 6
 
 # For tracks
 batch_size: 32

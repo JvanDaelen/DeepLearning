@@ -1,0 +1,63 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+age_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+te_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+age_mu
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.02566916493083257
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.002790232262430399
+age_std
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.037706449108191584
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.006438971997074478
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.13978494623655915
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.015360983102918587
+inliers_std
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.21729344492431418
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.03705787429128977
+expected_age
+Sequence Name,correlation3_unscaled/2024-04-08_211523
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.009335620439126986
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.00027221778190642996

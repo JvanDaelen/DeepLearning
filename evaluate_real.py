@@ -33,8 +33,8 @@ results_table.field_names = ["Inference Time"]
 corner_config = CornerConfig(30, 0.3, 15, 0.15, False, 11)
 
 EvalDatasetConfigDict = {
-    EvalDatasetType.EC: {"dt": 0.010, "root_dir": "<path>"},
-    EvalDatasetType.EDS: {"dt": 0.005, "root_dir": "<path>"},
+    EvalDatasetType.EC: {"dt": 0.010, "root_dir": "C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/ec_subseq"},
+    EvalDatasetType.EDS: {"dt": 0.005, "root_dir": "C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/eds_subseq"},
 }
 
 EVAL_DATASETS = [
@@ -116,8 +116,15 @@ def track(cfg):
 
     # Configure model
     model = hydra.utils.instantiate(cfg.model, _recursive_=False)
+    print("model type:", type(model))
 
     state_dict = torch.load(cfg.weights_path, map_location="cuda:0")["state_dict"]
+    # print("State dict:", type(state_dict['reference_encoder.conv_bottom_0.model.0.weight']))
+    # for key in state_dict.keys():
+    #     print(f"State dict {key}:", type(state_dict[key]))
+    print("pre size: ", state_dict['target_encoder.conv_bottom_0.model.0.weight'].size())
+    # state_dict['target_encoder.conv_bottom_0.model.0.weight'] = torch.zeros(32, 10, 1, 1)
+    # print("post size: ", state_dict['target_encoder.conv_bottom_0.model.0.weight'].size())
     model.load_state_dict(state_dict)
     if torch.cuda.is_available():
         model = model.cuda()

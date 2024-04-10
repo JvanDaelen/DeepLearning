@@ -317,19 +317,33 @@ class PoseInterpolator:
 
 def retrieve_track_tuples(extra_dir, track_name):
     track_tuples = []
-    for extra_seq_dir in tqdm(extra_dir.iterdir(), desc="Fetching track paths..."):
+    # print("extra dir: ", extra_dir) # Note 12: extra dir has a \train which does not yet exists, adding this manually solves the generator to 
+    #                                 # list convertion issue and allows retrieve_track_tuples to run to completion
+    # print("track_utils.retrieve_track_tuples called") # Note 6: this is printed
+    # print(extra_dir.iterdir()) # Note 7: this returns a generator object
+    # print("Attempting to print a list of the generator")
+    p = extra_dir
+    # print([x for x in p.iterdir()]) # Note 11: this also fails
+    # print(list(extra_dir.iterdir())) # Note 9: inspecting what is in the generator object
+    # print("finished printing the list") # Note 10: this is not printed indicating the issue stems from the conversion of iterdir generator to a list
+    for extra_seq_dir in tqdm(extra_dir.iterdir(), desc="Fetching track paths..."): # Note 8: Trying to skip the tqdm function
+        # print("Extra seq dir", extra_seq_dir) # Note 7, this does not seem to be printed, the desc messaeg does seem to be printed indicating that the error originates from the tqdm
+                                # Since this seems to be just a progress bar this may not be right
         # Ignore hidden dirs
         if str(extra_seq_dir.stem).startswith("."):
             continue
 
         # Check if has valid tracks
-        track_path = os.path.join(str(extra_seq_dir), "tracks", f"{track_name}.gt.txt")
+        track_path = os.path.join(str(extra_seq_dir), "tracks", f"{track_name}.gt.txt") # Note 21: the track name is "shitomasi_custom instead of the seq name"
+        # print("track path: ", track_path) # Note 19: This prints
         if not os.path.exists(track_path):
+            print(track_path, " does not exist")
             continue
 
         # Store paths
         track_data = np.genfromtxt(track_path)
         n_tracks = len(np.unique(track_data[:, 0]))
+        # print("n_tracks: ", n_tracks) # Note 20: This does not, this os.path.exists is false
         for track_idx in range(n_tracks):
             track_tuples.append((track_path, track_idx))
 

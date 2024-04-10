@@ -1,17 +1,19 @@
 hydra:
   run:
-    dir: <path>/${model.name}/${now:%Y-%m-%d_%H%M%S}
+    dir: C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/${model.name}/${now:%Y-%m-%d_%H%M%S}
 
-gt_path: <path>/gt_tracks
+gt_path: C:/Users/jeroe/Documents/GitHub/DeepLearning/eval_data/gt
 running_locally: False
 
 
-weights_path: <path>
+weights_path: C:\Users\jeroe\Documents\GitHub\DeepLearning\eval_data\pretrained_weights\weights_finetuned_ec.ckpt
+# weights_path: C:\Users\jeroe\Documents\GitHub\DeepLearning\train_out\mf\correlation3_unscaled\open_source\2024-04-09_182320\checkpoints\epoch=4999-step=5000.ckpt
+
 
 track_name: shitomasi_custom
 representation: time_surfaces_v2_5
 patch_size: 31
-visualize: False
+visualize: True
 dt_track_vis: 0.2
 
 # Composing nested config with default
@@ -20,3 +22,5 @@ defaults:
 # Pytorch lightning trainer's argument
 trainer:
   gpus: [0]
+
+

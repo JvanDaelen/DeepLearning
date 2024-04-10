@@ -1,15 +1,15 @@
 hydra:
   run:
-    dir:<path>/${data.name}/${model.name}/${experiment}/${now:%Y-%m-%d_%H%M%S}
+    dir: C:/Users/jeroe/Documents/GitHub/DeepLearning/train_out/${data.name}/${model.name}/${experiment}/${now:%Y-%m-%d_%H%M%S}
 
 # Composing nested config with default
 experiment: open_source
 track_name: shitomasi_custom
 
-representation: time_surfaces_v2_5
+representation: time_surfaces_v2_5 # Note 30: v2_5 does not always exist in our dataset v2_1 does, does not fix it fully at least. Note  9-4-24 9: All EC 0.0100 datasets fo have v2_5
 patch_size: 31
 
-debug: False
+debug: False # Does nothing
 n_vis: 2
 logging: True
 
@@ -22,7 +22,7 @@ defaults:
 # Pytorch lightning trainer's argument
 trainer:
   benchmark: True
-  log_every_n_steps: 10
-  max_epochs: 40000
-  num_processes: 1
+  log_every_n_steps: 1
+  max_epochs: 5000
+  # num_processes: 1
   num_sanity_val_steps: 1

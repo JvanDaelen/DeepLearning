@@ -14,7 +14,7 @@ torch.set_num_threads(1)
 torch.backends.cudnn.benchmark = True
 
 
-@hydra.main(config_path="configs", config_name="train_defaults")
+@hydra.main(config_path="configs", config_name="train_defaults", version_base='1.1')
 def train(cfg):
     pl.seed_everything(1234)
 
@@ -27,6 +27,9 @@ def train(cfg):
         cfg.model,
         _recursive_=False,
     )
+    print("Type of model:", type(model)) # Note 9-4-24 2: models.correlation3_unscaled.TrackerNetC
+    print("Model conv_0 size:", model.target_encoder.conv_bottom_0.model)
+    print("Train.py checkpoint path:", cfg.checkpoint_path.lower()) # Note 9-4-24 1: path == none so if statement is false
     if cfg.checkpoint_path.lower() != "none":
         # Load weights
         model = model.load_from_checkpoint(checkpoint_path=cfg.checkpoint_path)
@@ -39,12 +42,14 @@ def train(cfg):
         model.max_unrolls = cfg.max_unrolls
         model.pose_mode = cfg.model.pose_mode
 
-    data_module = hydra.utils.instantiate(cfg.data)
+    # Note 32: Investigating this next
+    print("cfg.data: ", cfg.data)
+    data_module = hydra.utils.instantiate(cfg.data) 
 
     # Logging
     if cfg.logging:
         training_logger = pl.loggers.TensorBoardLogger(
-            ".", "", "", log_graph=True, default_hp_metric=False
+            ".", "", "", log_graph=False, default_hp_metric=False # Change log_graph to False due to "input_array was not given" error
         )
     else:
         training_logger = None
@@ -56,7 +61,9 @@ def train(cfg):
         ),
         pl.callbacks.LearningRateMonitor(logging_interval="epoch"),
     ]
-
+    
+    # Note 25: pl.Trainer is getting unexpected keyword argument 'num_processes'
+    # Note 26: Commenting out line 27 num_processes: 1 in train_defaults.yaml allows it to run further now: `Trainer.fit` stopped: No training batches.
     trainer = pl.Trainer(
         **OmegaConf.to_container(cfg.trainer),
         devices=[0],

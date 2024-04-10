@@ -10,14 +10,16 @@ class FPNEncoder(nn.Module):
     def __init__(self, in_channels=1, out_channels=512, recurrent=False):
         super(FPNEncoder, self).__init__()
 
+        print("FPNEncoder in_channels:", in_channels) # Note 9-4-24 6:in channels is 1 first and then 2, checking where that comes from (NetC)
         self.conv_bottom_0 = ConvBlock(
             in_channels=in_channels,
-            out_channels=32,
-            n_convs=2,
+            out_channels=32, # Note 9-4-24 5: Changed 32 to 30 to test if anything here has an effect
+            n_convs=2, # Note 9-4-24 3: change this from a 2 to a 10, changed the number of layers in the model but the error results from the inchannels of the first layer
             kernel_size=1,
             padding=0,
             downsample=False,
         )
+        print("Running this edited section of FPNEncoder") # Note 9-4-24 4: It runs twice for the train.py
         self.conv_bottom_1 = ConvBlock(
             in_channels=32,
             out_channels=64,
@@ -290,13 +292,17 @@ class TrackerNetC(Template):
         # Configuration
         self.grayscale_ref = True
         if not isinstance(input_channels, type(None)):
+            print("not isinstance(input_channels, type(None))") # Note 9-4-24 7: check in input 
             self.channels_in_per_patch = input_channels
+        else:
+            print("isinstance(input_channels, type(None))") # Note 9-4-24 8: this prints so the if statement is fals self.channels_in_per_patch != input_channels
 
         # Architecture
         self.feature_dim = feature_dim
         self.redir_dim = 128
 
         self.reference_encoder = FPNEncoder(1, self.feature_dim)
+        print("TrackerNetC target_encoder channels_in_per_patch:", self.channels_in_per_patch)
         self.target_encoder = FPNEncoder(self.channels_in_per_patch, self.feature_dim)
 
         # Correlation3 had k=1, p=0

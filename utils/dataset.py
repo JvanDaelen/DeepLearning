@@ -70,6 +70,7 @@ class TrackData:
         :param track_tuple: (Path to track.gt.txt, track_id)
         :param config:
         """
+        # print("TrackData config: ", config) # Note 29: Checking config
         self.config = config
 
         # Track augmentation (disabled atm)
@@ -88,6 +89,7 @@ class TrackData:
         self.event_paths = config.event_paths
 
         # TODO: Do this in a non-hacky way
+        # print("event paths: ", self.event_paths) # Note 28: self.event_paths[0] index is out of range
         if "0.0100" in self.event_paths[0]:
             self.index_multiplier = 1
         elif "0.0200" in self.event_paths[0]:
@@ -253,6 +255,7 @@ class TrackDataset(Dataset):
 
     def __getitem__(self, idx_track):
         track_tuple = self.track_tuples[idx_track]
+        #print("track_tuple[0]: ", track_tuple[0])
         data_config = TrackDataConfig(
             self.get_frame_paths_fn(track_tuple[0]),
             self.get_event_paths_fn(track_tuple[0], self.representation),
@@ -289,7 +292,8 @@ class MFDataModule(LightningDataModule):
         self.n_train = n_train
         self.n_val = n_val
         self._has_prepared_data = True
-
+        
+        #print("utils.dataset line 293 checkpoint") # Note 0: it prints this showing its not an import error
         self.data_dir = Path(data_dir)
         self.extra_dir = Path(extra_dir)
         self.batch_size = batch_size
@@ -308,27 +312,39 @@ class MFDataModule(LightningDataModule):
             cache_path = (
                 self.extra_dir / split_name / ".cache" / f"{track_name}.paths.pkl"
             )
+            #print("cache path: ", cache_path) # Note 3: It prints this file path as ..\training_extra\train\.cache\shitomasi_custom.paths.pkl
             if cache_path.exists():
+                #print("cache path exists") # Note 4: It does not say the path exists
                 with open(str(cache_path), "rb") as cache_f:
                     track_tuples = pickle.load(cache_f)
             else:
-                track_tuples = retrieve_track_tuples(
+                #print("pre retrieve track tuples") # Note 5: it prints this indicating a problem with retrieve_track_tuples
+                track_tuples = retrieve_track_tuples( # Note 18: It appears it is attempting to load the tracks for training from the extra dir instead of normal dir, 
+                                                        # attampting with normal dir = extra dir in mf yaml
                     self.extra_dir / split_name, track_name
                 )
+                #print("utils.dataset line else checkpoint") # Note 2: It does not reach this checkpoint, Note 13: it now passes this point
+                #print(str(cache_path)) # Note 14: the printed path shows a .cache folder that does not exists yet, adding it manually to no such directory error works
                 with open(str(cache_path), "wb") as cache_f:
                     pickle.dump(track_tuples, cache_f)
+            #print("utils.dataset line post if else checkpoint") # Note 1: It does not reach this checkpoint, Note 15: it now passes this point
 
             # Shuffle and trim
             n_tracks = len(track_tuples)
             track_tuples_array = np.asarray(track_tuples)
-            track_tuples_array = track_tuples_array[: (n_tracks // 64) * 64, :]
-            track_tuples_array = track_tuples_array.reshape([(n_tracks // 64), 64, 2])
-            rand_perm = np.random.permutation((n_tracks // 64))
-            track_tuples_array = track_tuples_array[rand_perm, :, :].reshape(
-                (n_tracks // 64) * 64, 2
-            )
-            track_tuples_array[:, 1] = track_tuples_array[:, 1].astype(np.int)
-            track_tuples = []
+            # Note 27, it appear the trimming is removing all the things, commenting out this section results in the code running further
+            #print("track_tuples_array: ", track_tuples_array) # Note 17: checking array as possible cause of index error returns an empty list
+            # track_tuples_array = track_tuples_array[: (n_tracks // 64) * 64, :]
+            # track_tuples_array = track_tuples_array.reshape([(n_tracks // 64), 64, 2])
+            # rand_perm = np.random.permutation((n_tracks // 64))
+            # track_tuples_array = track_tuples_array[rand_perm, :, :].reshape(
+            #     (n_tracks // 64) * 64, 2
+            # )
+            #print("track_tuples_array[:, 1] pre int check: ", track_tuples_array[:, 1]) # Note 22: shows an empty list
+            track_tuples_array[:, 1] = track_tuples_array[:, 1].astype(int) # Note 21: np deprication error, commeting this line out results in other errors 
+                                                                            # Note 23: replcing np.int with int seems to work. now getting path error
+                                                                            # Note 24: path error fixed by adding test folder with stuff inside
+            track_tuples = [] 
             for i in range(track_tuples_array.shape[0]):
                 track_tuples.append(
                     [track_tuples_array[i, 0], int(track_tuples_array[i, 1])]
@@ -337,6 +353,7 @@ class MFDataModule(LightningDataModule):
             if self.split_max_samples[split_name] < len(track_tuples):
                 track_tuples = track_tuples[: self.split_max_samples[split_name]]
             self.split_track_tuples[split_name] = track_tuples
+        #print("End of MFDataModule checkpoint") # Note 16: it does not pass this point
 
     @staticmethod
     def get_frame_paths(track_path):
@@ -349,14 +366,16 @@ class MFDataModule(LightningDataModule):
             [
                 frame_p
                 for frame_p in glob(str(images_dir / "*.png"))
-                if 400000
-                <= int(os.path.split(frame_p)[1].replace(".png", ""))
+                if -1 # Note 39: Ec starts at 0 so replacing 400000 with -1
+                <= int(os.path.split(frame_p)[1].replace(".png", "").replace("frame_", "")) # Note 38: there is a frame_ in teh ec file names added .replace("frame_")
                 <= 900000
             ]
         )
 
     @staticmethod
     def get_event_paths(track_path, rep, dt):
+        # Note 33: train.py seems to not use this function
+        #print("get_event_paths track_path: ", track_path)
         event_files = sorted(
             glob(
                 str(
@@ -375,6 +394,17 @@ class MFDataModule(LightningDataModule):
 
     @staticmethod
     def get_event_paths_mixed_dt(track_path, rep, dt):
+        # Note 34: train.py seems to use this function
+        #print("get_event_paths_mixed_dt track_path: ", track_path)
+        # Note 36: Checking the glob string initial part shows the first part of the path is correct
+        #print("get_event_paths_mixed_dt os.path.split(track_path)[0]: ", os.path.split(track_path)[0])
+        # Note 37: Checking the full string that is passed to glob shows the timestep was wrong in the mf.yaml
+        #print("get_event_paths_mixed_dt glob string: ", str(
+                #     Path(os.path.split(track_path)[0].replace("tracks", "events"))
+                #     / f"{dt:.4f}"
+                #     / rep
+                #     / "*.h5"
+                # ))
         event_files = sorted(
             glob(
                 str(
@@ -385,6 +415,8 @@ class MFDataModule(LightningDataModule):
                 )
             )
         )
+        # Note 35: checking return statement, returns nothing, expecting an error in os.path.split(track_path)[0] above
+        # print("Event files: ", event_files)
         return [
             event_p
             for event_p in event_files
@@ -393,6 +425,7 @@ class MFDataModule(LightningDataModule):
 
     def setup(self, stage=None):
         # Create train and val splits
+        print("utils.dataset.MFDataModule dataset_train")
         self.dataset_train = TrackDataset(
             self.split_track_tuples["train"],
             MFDataModule.get_frame_paths,
@@ -404,6 +437,7 @@ class MFDataModule(LightningDataModule):
             representation=self.representation,
             augment=self.augment,
         )
+        print("utils.dataset.MFDataModule dataset_val")
         self.dataset_val = TrackDataset(
             self.split_track_tuples["test"],
             MFDataModule.get_frame_paths,
@@ -429,6 +463,7 @@ class MFDataModule(LightningDataModule):
             collate_fn=recurrent_collate,
             pin_memory=True,
             sampler=subseq_sampler,
+            persistent_workers=True # Added this for increased speed
         )
 
     def val_dataloader(self):
@@ -444,6 +479,7 @@ class MFDataModule(LightningDataModule):
             collate_fn=recurrent_collate,
             pin_memory=True,
             sampler=subseq_sampler,
+            persistent_workers=True # Added this for increased speed
         )
 
 

@@ -1,0 +1,63 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.02531652846642755
+boxes_rotation_198_278,0.0
+age_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,3.3754907601220743
+boxes_rotation_198_278,0.0
+te_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.0
+boxes_rotation_198_278,0.0
+age_mu
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.0028583506328861987
+shapes_6dof_485_565,0.06464501754126516
+boxes_translation_330_410,0.05326227702181294
+boxes_rotation_198_278,0.029532303122076182
+age_std
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.005292636936247272
+shapes_6dof_485_565,0.055151572208124555
+boxes_translation_330_410,0.02926341847486717
+boxes_rotation_198_278,0.015559414844964552
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.017369727047146406
+shapes_6dof_485_565,0.478494623655914
+boxes_translation_330_410,0.46612903225806457
+boxes_rotation_198_278,0.5391705069124424
+inliers_std
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.03216248485562214
+shapes_6dof_485_565,0.4060296780205364
+boxes_translation_330_410,0.3707853689161552
+boxes_rotation_198_278,0.32977852066235075
+expected_age
+Sequence Name,correlation3_unscaled/2024-04-08_210852
+shapes_translation_8_88,0.0
+shapes_rotation_165_245,0.00021987312560663074
+shapes_6dof_485_565,0.052854358964857386
+boxes_translation_330_410,0.03477976246323791
+boxes_rotation_198_278,0.02082475919745043

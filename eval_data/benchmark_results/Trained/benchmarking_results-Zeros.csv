@@ -1,0 +1,63 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.08342719161586748
+shapes_rotation_165_245,0.03915816981938402
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.053101085861847364
+boxes_rotation_198_278,0.01772139132778846
+age_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.06962243755021759
+shapes_rotation_165_245,0.01722460434336592
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.04337467676787232
+boxes_rotation_198_278,0.007380930771161034
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,2.3571244185666864
+shapes_rotation_165_245,3.3495772835376405
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,4.783611624891224
+boxes_rotation_198_278,3.439613132614558
+te_5_std
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.4031902778599035
+shapes_rotation_165_245,0.7539261015257784
+shapes_6dof_485_565,0.0
+boxes_translation_330_410,0.34214006226330856
+boxes_rotation_198_278,0.8361431670793616
+age_mu
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.1958309342133046
+shapes_rotation_165_245,0.14373209620508612
+shapes_6dof_485_565,0.011626936994683552
+boxes_translation_330_410,0.1838454528932382
+boxes_rotation_198_278,0.07006799944895899
+age_std
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.07629964012561212
+shapes_rotation_165_245,0.06650357748669833
+shapes_6dof_485_565,0.020580050168117682
+boxes_translation_330_410,0.10252287682141385
+boxes_rotation_198_278,0.055017420847640594
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.967741935483871
+shapes_rotation_165_245,0.945409429280397
+shapes_6dof_485_565,0.25
+boxes_translation_330_410,0.8580645161290323
+boxes_rotation_198_278,0.9155145929339479
+inliers_std
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.1621393424731207
+shapes_rotation_165_245,0.18244542376825612
+shapes_6dof_485_565,0.3879917968315853
+boxes_translation_330_410,0.334831872638259
+boxes_rotation_198_278,0.23161999170470984
+expected_age
+Sequence Name,correlation3_unscaled/2024-04-08_205718
+shapes_translation_8_88,0.19275782466470004
+shapes_rotation_165_245,0.14284305953926837
+shapes_6dof_485_565,0.010435460298129218
+boxes_translation_330_410,0.18318926876319078
+boxes_rotation_198_278,0.06894931398349322

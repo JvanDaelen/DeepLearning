@@ -1,0 +1,54 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.07951853076288234
+rocket_earth_light_338_438,0.18374022444447485
+ziggy_in_the_arena_1350_1650,0.22665687358792147
+peanuts_running_2360_2460,0.042902637809532754
+age_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.08233035445386207
+rocket_earth_light_338_438,0.0
+ziggy_in_the_arena_1350_1650,0.11736423107494977
+peanuts_running_2360_2460,0.02072639295170255
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,3.8269167610469426
+rocket_earth_light_338_438,2.770076031609296
+ziggy_in_the_arena_1350_1650,2.6632009594449393
+peanuts_running_2360_2460,3.4872040501132617
+te_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.9638260754370338
+rocket_earth_light_338_438,0.0
+ziggy_in_the_arena_1350_1650,0.5937118623586883
+peanuts_running_2360_2460,0.9533321661449244
+age_mu
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.43706843316522465
+rocket_earth_light_338_438,0.5211001491187331
+ziggy_in_the_arena_1350_1650,0.7076196207210239
+peanuts_running_2360_2460,0.3866747114097807
+age_std
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.27919174693474
+rocket_earth_light_338_438,0.21927356339042559
+ziggy_in_the_arena_1350_1650,0.28692072137941865
+peanuts_running_2360_2460,0.21150672187288205
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.8049853372434017
+rocket_earth_light_338_438,0.37965260545905705
+ziggy_in_the_arena_1350_1650,0.9240986717267553
+peanuts_running_2360_2460,0.7443249701314217
+inliers_std
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.2879878873241271
+rocket_earth_light_338_438,0.2183904786668797
+ziggy_in_the_arena_1350_1650,0.2266897081300657
+peanuts_running_2360_2460,0.3319838392143612
+expected_age
+Sequence Name,correlation3_unscaled/2024-03-27_123437
+peanuts_light_160_386,0.4118157554240813
+rocket_earth_light_338_438,0.23630598481320475
+ziggy_in_the_arena_1350_1650,0.7053588721426347
+peanuts_running_2360_2460,0.35548408706368834

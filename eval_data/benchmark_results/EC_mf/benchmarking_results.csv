@@ -1,0 +1,63 @@
+age_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.7166873468246241
+shapes_rotation_165_245,0.5444011926597715
+shapes_6dof_485_565,0.89954160029077
+boxes_translation_330_410,0.8101266114552683
+boxes_rotation_198_278,0.4128992261880555
+age_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.2660621074076894
+shapes_rotation_165_245,0.3712537386180855
+shapes_6dof_485_565,0.1758005245467531
+boxes_translation_330_410,0.3364565069912543
+boxes_rotation_198_278,0.27942402282764367
+te_5_mu
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,1.1780014524982467
+shapes_rotation_165_245,2.040711474602273
+shapes_6dof_485_565,1.7440843067667748
+boxes_translation_330_410,1.2183118528040326
+boxes_rotation_198_278,1.9180408544821899
+te_5_std
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.24274410561315166
+shapes_rotation_165_245,0.8387685647631924
+shapes_6dof_485_565,0.5770443830910021
+boxes_translation_330_410,0.3898682337055001
+boxes_rotation_198_278,0.4363704949141834
+age_mu
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.7911242833330479
+shapes_rotation_165_245,0.7852085378916689
+shapes_6dof_485_565,0.8983268855541338
+boxes_translation_330_410,0.8748828770185038
+boxes_rotation_198_278,0.6745606315163623
+age_std
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.17021224037107344
+shapes_rotation_165_245,0.2551438626870593
+shapes_6dof_485_565,0.2131397802125889
+boxes_translation_330_410,0.17342945719408073
+boxes_rotation_198_278,0.2534206926879105
+inliers_mu
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.9650537634408601
+shapes_rotation_165_245,0.9478908188585609
+shapes_6dof_485_565,0.946236559139785
+boxes_translation_330_410,0.9741935483870967
+boxes_rotation_198_278,0.9477726574500768
+inliers_std
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.14933273561646399
+shapes_rotation_165_245,0.17517977761511455
+shapes_6dof_485_565,0.15775699732388396
+boxes_translation_330_410,0.12435055011223471
+boxes_rotation_198_278,0.19327999336437268
+expected_age
+Sequence Name,correlation3_unscaled/2024-03-27_113957
+shapes_translation_8_88,0.7849867778399556
+shapes_rotation_165_245,0.779766672197055
+shapes_6dof_485_565,0.8809084545669045
+boxes_translation_330_410,0.8692154060813316
+boxes_rotation_198_278,0.6717415597966515
