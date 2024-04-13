@@ -7,8 +7,11 @@ from utils.losses import *
 
 
 class FPNEncoder(nn.Module):
-    def __init__(self, in_channels=1, out_channels=512, recurrent=False):
+    def __init__(self, in_channels=1, out_channels=512, recurrent=False, activation=0):
         super(FPNEncoder, self).__init__()
+
+        # For normal ReLU set activation equal to 1. For sigmoid set activation equal to 2. Otherwise orignal model (Leaky ReLU) is used.
+        self.activation = activation
 
         self.conv_bottom_0 = ConvBlock(
             in_channels=in_channels,
@@ -17,6 +20,7 @@ class FPNEncoder(nn.Module):
             kernel_size=1,
             padding=0,
             downsample=False,
+            activation=self.activation
         )
         self.conv_bottom_1 = ConvBlock(
             in_channels=32,
@@ -25,6 +29,7 @@ class FPNEncoder(nn.Module):
             kernel_size=5,
             padding=0,
             downsample=False,
+            activation=self.activation
         )
         self.conv_bottom_2 = ConvBlock(
             in_channels=64,
@@ -33,6 +38,7 @@ class FPNEncoder(nn.Module):
             kernel_size=5,
             padding=0,
             downsample=False,
+            activation=self.activation
         )
         self.conv_bottom_3 = ConvBlock(
             in_channels=128,
@@ -41,6 +47,7 @@ class FPNEncoder(nn.Module):
             kernel_size=3,
             padding=0,
             downsample=True,
+            activation=self.activation
         )
         self.conv_bottom_4 = ConvBlock(
             in_channels=256,
@@ -49,6 +56,7 @@ class FPNEncoder(nn.Module):
             kernel_size=3,
             padding=0,
             downsample=False,
+            activation=self.activation
         )
 
         self.recurrent = recurrent
@@ -104,6 +112,7 @@ class FPNEncoder(nn.Module):
                 kernel_size=3,
                 padding=1,
                 downsample=False,
+                activation=self.activation
             ),
             nn.Conv2d(
                 in_channels=out_channels,
@@ -122,6 +131,7 @@ class FPNEncoder(nn.Module):
                 kernel_size=3,
                 padding=1,
                 downsample=False,
+                activation=self.activation
             ),
             nn.Conv2d(
                 in_channels=out_channels,
@@ -175,18 +185,21 @@ class FPNEncoder(nn.Module):
 
 
 class JointEncoder(nn.Module):
-    def __init__(self, in_channels, out_channels):
+    def __init__(self, in_channels, out_channels, activation=None):
         super(JointEncoder, self).__init__()
 
+        # For normal ReLU set activation equal to 1. For sigmoid set activation equal to 2. Otherwise orignal model (Leaky ReLU) is used.
+        self.activation = activation
+
         self.conv1 = ConvBlock(
-            in_channels=in_channels, out_channels=64, n_convs=2, downsample=True
+            in_channels=in_channels, out_channels=64, n_convs=2, downsample=True, activation=self.activation
         )
         self.conv2 = ConvBlock(
-            in_channels=64, out_channels=128, n_convs=2, downsample=True
+            in_channels=64, out_channels=128, n_convs=2, downsample=True, activation=self.activation
         )
         self.convlstm0 = ConvLSTMCell(128, 128, 3)
         self.conv3 = ConvBlock(
-            in_channels=128, out_channels=256, n_convs=2, downsample=True
+            in_channels=128, out_channels=256, n_convs=2, downsample=True, activation=self.activation
         )
         self.conv4 = ConvBlock(
             in_channels=256,
@@ -195,6 +208,7 @@ class JointEncoder(nn.Module):
             padding=0,
             n_convs=1,
             downsample=False,
+            activation=self.activation
         )
 
         # Transformer Addition
@@ -210,13 +224,33 @@ class JointEncoder(nn.Module):
         self.ls_layer = LayerScale(embed_dim)
 
         # Attention Mask Transformer
-        self.fusion_layer0 = nn.Sequential(
-            nn.Linear(embed_dim * 2, embed_dim),
-            nn.LeakyReLU(0.1),
-            nn.Linear(embed_dim, embed_dim),
-            nn.LeakyReLU(0.1),
-        )
-        self.output_layers = nn.Sequential(nn.Linear(embed_dim, 512), nn.LeakyReLU(0.1))
+        # Normal ReLU if self.activation is set to 1
+        if self.activation == 1:
+            self.fusion_layer0 = nn.Sequential(
+                nn.Linear(embed_dim * 2, embed_dim),
+                nn.ReLU(),
+                nn.Linear(embed_dim, embed_dim),
+                nn.ReLU(),
+            )
+            self.output_layers = nn.Sequential(nn.Linear(embed_dim, 512), nn.ReLU())
+        # Sigmoid if self.activation is set to 2
+        elif self.activation == 2:
+            self.fusion_layer0 = nn.Sequential(
+                nn.Linear(embed_dim * 2, embed_dim),
+                nn.Sigmoid(),
+                nn.Linear(embed_dim, embed_dim),
+                nn.Sigmoid(),
+            )
+            self.output_layers = nn.Sequential(nn.Linear(embed_dim, 512), nn.Sigmoid())
+        # Leaky ReLU otherwise
+        else:
+            self.fusion_layer0 = nn.Sequential(
+                nn.Linear(embed_dim * 2, embed_dim),
+                nn.LeakyReLU(0.1),
+                nn.Linear(embed_dim, embed_dim),
+                nn.LeakyReLU(0.1),
+            )
+            self.output_layers = nn.Sequential(nn.Linear(embed_dim, 512), nn.LeakyReLU(0.1))
 
     def reset(self):
         self.convlstm0.reset()

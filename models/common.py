@@ -77,7 +77,13 @@ class ConvBlock(nn.Module):
         padding=1,
         downsample=True,
         dilation=1,
+        activation=None
     ):
+        if activation is None:
+            self.activation = 0
+        else:
+            self.activation = activation
+        
         super(ConvBlock, self).__init__()
         self.modules = []
 
@@ -96,7 +102,15 @@ class ConvBlock(nn.Module):
                 )
             )
             self.modules.append(nn.BatchNorm2d(num_features=out_channels))
-            self.modules.append(nn.LeakyReLU(0.1))
+            # ReLU
+            if self.activation == 1:
+                self.modules.append(nn.ReLU())
+            # Sigmoid
+            elif self.activation == 2:
+                self.modules.append(nn.Sigmoid())
+            # Leaky ReLU
+            else:
+                self.modules.append(nn.LeakyReLU(0.1))
             c_in = c_out
 
         if downsample:
@@ -108,7 +122,12 @@ class ConvBlock(nn.Module):
                     stride=2,
                 )
             )
-            self.modules.append(nn.ReLU())
+            # Sigmoid
+            if self.activation == 2:
+                self.modules.append(nn.Sigmoid())
+            # ReLU (original code also used normal ReLU here)
+            else:
+                self.modules.append(nn.ReLU())
             # self.modules.append(nn.MaxPool2d(kernel_size=2, stride=2))
 
         self.model = nn.Sequential(*self.modules)
