@@ -30,10 +30,10 @@ EVAL_DATASETS = [
 
 error_threshold_range = np.arange(1, 32, 1)
 results_dir = Path(
-    "<path>/benchmark_data"
+    "C:/Users/tjall/OneDrive\Documents/TU Delft/Master/Deep Learning/Project Event Camera Tracking/DeepLearning/eval_data"
 )
 out_dir = Path(
-    "<path>/benchmark_results"
+    "C:/Users/tjall/OneDrive\Documents/TU Delft/Master/Deep Learning/Project Event Camera Tracking/DeepLearning/eval_data"
 )
 methods = ["network_pred"]
 
